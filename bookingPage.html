@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Stays | Bon Voyage</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+    <link rel="stylesheet" href="about.css">
+
+    <style>
+        :root {
+            --primary-gold: #ffcc00;
+            --dark-navy: #0f2027;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-navy);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Page Header */
+        .page-header {
+            height: 35vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('roomImages/room1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .page-header h1 { font-size: 3.5rem; color: var(--primary-gold); margin: 0; text-transform: uppercase; }
+
+        /* Modern Filter Bar */
+        .filter-section {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .filter-container {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filter-group { display: flex; flex-direction: column; gap: 5px; }
+        .filter-group label { font-size: 0.75rem; color: var(--primary-gold); font-weight: bold; text-transform: uppercase; }
+
+        input, select {
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass);
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus { border-color: var(--primary-gold); }
+
+        .search-btn {
+            background: var(--primary-gold);
+            color: black;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+
+        .search-btn:hover { background: #e6b800; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,204,0,0.3); }
+
+        /* Hotel Grid */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        
+        .hotel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .hotel-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass);
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .hotel-card:hover { transform: translateY(-10px); border-color: var(--primary-gold); background: rgba(255,255,255,0.08); }
+
+        .card-img-container { position: relative; height: 220px; overflow: hidden; }
+        .card-img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .hotel-card:hover .card-img-container img { transform: scale(1.1); }
+        
+        .tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-gold);
+            color: black;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .card-content { padding: 25px; }
+        .stars { color: var(--primary-gold); margin-bottom: 10px; font-size: 0.9rem; }
+        .hotel-card h3 { margin: 0 0 10px 0; font-size: 1.5rem; letter-spacing: 1px; }
+        .location { color: #aaa; font-size: 0.9rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+
+        .pricing-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--glass);
+            padding-top: 20px;
+        }
+
+        .price-text { font-size: 1.3rem; font-weight: bold; }
+        .price-text span { font-size: 0.8rem; font-weight: normal; color: #888; }
+
+        /* Book Button */
+        .book-btn {
+            background: transparent;
+            color: var(--primary-gold);
+            border: 2px solid var(--primary-gold);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .book-btn:hover { background: var(--primary-gold); color: black; }
+
+        /* Live Receipt (Floating) */
+        #live-receipt {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-gold);
+            color: black;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            display: none;
+            z-index: 1000;
+            font-weight: bold;
+            animation: slideIn 0.5s ease-out;
+        }.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid gold;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+  display: none;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        /* Modal Styles */
+        .modal { display:none; position:fixed; z-index:2000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); backdrop-filter: blur(5px); }
+        .modal-content { margin: auto; display: block; width: 85%; max-width: 900px; margin-top: 50px; border-radius: 15px; border: 2px solid var(--primary-gold); }
+        .close { position: absolute; top: 25px; right: 40px; color: white; font-size: 50px; cursor: pointer; transition: 0.3s; }
+        .close:hover { color: var(--primary-gold); }
+    </style>
+</head>
+<body>
+
+<ul class="navbar">
+    <li class="nav"><a href="hmpage.html"><i class="ri-home-line"></i> Home</a></li>
+    <li class="nav"><a href="about.html"><i class="ri-information-line"></i> About</a></li>
+    <li class="nav"><a href="myBookings.html"><i class="ri-history-line"></i> My Bookings</a></li>
+</ul>
+
+<div class="page-header">
+    <h1>Find Your Oasis</h1>
+    <p>Exclusive deals on the world's most luxurious destinations</p>
+</div>
+
+<div class="filter-section">
+    <div class="filter-container">
+        <div class="filter-group">
+            <label>Destination</label>
+            <select id="locationFilter">
+                <option value="all">All Locations</option>
+                <option value="Delhi">Delhi (Capital)</option>
+                <option value="Mumbai">Mumbai (City of Dreams)</option>
+                <option value="Goa">Goa (Beach Paradise)</option>
+                <option value="Chandigarh">Chandigarh (The City Beautiful)</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Check-in</label>
+            <input type="date" id="checkin" onchange="updateReceipt()">
+        </div>
+        <div class="filter-group">
+            <label>Check-out</label>
+            <input type="date" id="checkout" onchange="updateReceipt()">
+        </div>
+        <div class="filter-group">
+            <label>Hotel Search</label>
+            <input type="text" id="searchInput" placeholder="Search by name...">
+        </div>
+        <button class="search-btn" onclick="filterHotels()"><i class="ri-search-eye-line"></i> Filter Result</button>
+    </div>
+</div>
+
+<div class="container">
+    <div id="hotelList" class="hotel-grid"></div>
+</div>
+
+<div id="live-receipt">
+    <i class="ri-wallet-3-line"></i> Est. Total: ₹<span id="res-total">0</span> (<span id="res-days">0</span> Nights)
+</div>
+
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+</div>
+
+<script>
+/* ================= REAL HOTEL DATABASE ================= */
+const hotels = [
+    { name:"Taj Palace", location:"Delhi", price:5200, image:"roomImages/room1.jpg", desc:"Iconic Luxury & Heritage", stars: 5, tag: "Top Rated" },
+    { name:"The Oberoi", location:"Mumbai", price:6800, image:"roomImages/room3.jpg", desc:"Marine Drive Views", stars: 5, tag: "Premium" },
+    { name:"W Goa", location:"Goa", price:7500, image:"roomImages/room5.avif", desc:"Vibrant Beachfront Living", stars: 5, tag: "Party Favorite" },
+    { name:"JW Marriott", location:"Chandigarh", price:4500, image:"roomImages/room6.avif", desc:"Modern Elegance", stars: 4, tag: "Business Class" },
+    { name:"ITC Maurya", location:"Delhi", price:5800, image:"roomImages/room1.jpg", desc:"The Luxury Collection", stars: 5, tag: "Heritage" },
+    { name:"Trident BKC", location:"Mumbai", price:6200, image:"roomImages/room3.jpg", desc:"Contemporary Comfort", stars: 4, tag: "Value" },
+    { name:"Leela Palace", location:"Delhi", price:8000, image:"roomImages/room1.jpg", desc:"Royal Indian Splendor", stars: 5, tag: "Ultra Luxury" },
+    { name:"Novotel Resort", location:"Goa", price:3800, image:"roomImages/room5.avif", desc:"Family Holiday Haven", stars: 4, tag: "Family Deal" }
+];
+
+/* ================= RENDER HOTELS ================= */
+function displayHotels(data){
+    let html = "";
+    data.forEach(hotel => {
+        let starsHtml = '<i class="ri-star-fill"></i>'.repeat(hotel.stars);
+        html += `
+        <div class="hotel-card">
+            <div class="card-img-container">
+                <span class="tag">${hotel.tag}</span>
+                <img src="${hotel.image}" onclick="openModal(this)" alt="${hotel.name}">
+            </div>
+            <div class="card-content">
+                <div class="stars">${starsHtml}</div>
+                <h3>${hotel.name}</h3>
+                <div class="location"><i class="ri-map-pin-user-line"></i> ${hotel.location} • ${hotel.desc}</div>
+                <div class="pricing-section">
+                    <div class="price-text">₹${hotel.price.toLocaleString()} <span>/ night</span></div>
+                    <button class="book-btn" onclick="book('${hotel.name}', ${hotel.price})">Book Now</button>
+                </div>
+            </div>
+        </div>`;
+    });
+    document.getElementById("hotelList").innerHTML = html || "<p style='grid-column: 1/-1; text-align:center;'>No matching luxury stays found.</p>";
+}
+
+/* ================= FILTER LOGIC ================= */
+function filterHotels(){
+    let search = document.getElementById("searchInput").value.toLowerCase();
+    let location = document.getElementById("locationFilter").value;
+    let filtered = hotels.filter(hotel => 
+        hotel.name.toLowerCase().includes(search) &&
+        (location === "all" || hotel.location === location)
+    );
+    displayHotels(filtered);
+}
+
+/* ================= LIVE PRICE PREVIEW ================= */
+function updateReceipt(){
+    let checkin = document.getElementById("checkin").value;
+    let checkout = document.getElementById("checkout").value;
+    let receipt = document.getElementById("live-receipt");
+
+    if(checkin && checkout){
+        let days = (new Date(checkout) - new Date(checkin))/(1000*60*60*24);
+        if(days > 0){
+            receipt.style.display = "block";
+            document.getElementById("res-days").innerText = days;
+            // Calculations based on average night price
+            document.getElementById("res-total").innerText = (days * 5000).toLocaleString(); 
+        } else {
+            receipt.style.display = "none";
+        }
+    }
+}
+
+/* ================= BACKEND INTEGRATION ================= */
+async function book(hotelName, price){
+    let checkin = document.getElementById("checkin").value;
+    let checkout = document.getElementById("checkout").value;
+    let username = localStorage.getItem("username") || "Guest User";
+
+    if(!checkin || !checkout){
+        alert("Please select your travel dates first.");
+        return;
+    }
+
+    let days = (new Date(checkout) - new Date(checkin))/(1000*60*60*24);
+    if(days <= 0){
+        alert("Check-out must be after check-in.");
+        return;
+    }
+
+    let bookingData = {
+        name: username,
+        email: username.toLowerCase().replace(" ", "") + "@example.com",
+        phone: "9999999999",
+        room: hotelName,
+        date: checkin
+    };
+
+    try {
+        const response = await fetch("http://localhost:5000/book", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bookingData)
+        });
+
+        if (response.ok) {
+            // Save locally for UI history
+            let localData = JSON.parse(localStorage.getItem("bookings")) || [];
+            localData.unshift({ hotel: hotelName, price, days, total: price * days, date: new Date().toLocaleString() });
+            localStorage.setItem("bookings", JSON.stringify(localData));
+
+            alert("Confirmed! Saving your booking to MongoDB...");
+            window.location.href = "payment.html";
+        } else {
+            alert("Server failed to save booking.");
+        }
+    } catch (error) {
+        alert("Connection Error. Ensure your backend server is running.");
+    }
+}
+
+/* ================= MODAL CONTROLS ================= */
+function openModal(img){
+    document.getElementById("imageModal").style.display="block";
+    document.getElementById("modalImg").src=img.src;
+}
+
+function closeModal(){
+    document.getElementById("imageModal").style.display="none";
+}
+
+// Initialize Page
+displayHotels(hotels);
+</script>
+</body>
+</html>

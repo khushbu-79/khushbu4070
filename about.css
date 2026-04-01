@@ -1,0 +1,189 @@
+/* ================= GLOBAL RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --gold: #ffcc00;
+    --dark-bg: #0f2027;
+    --glass: rgba(255, 255, 255, 0.1);
+    --transition: 0.4s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ================= BODY ================= */
+body {
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    line-height: 1.6;
+}
+
+/* ================= NAVBAR (Glassmorphism) ================= */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
+    padding: 18px;
+    position: fixed; /* Changed to fixed for better UX */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.nav a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav a:hover, .nav.active a {
+    color: var(--gold);
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+}
+
+/* ================= BUTTONS ================= */
+button, .btn {
+    background: var(--gold);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #000;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: #e6b800;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ================= INPUTS & FORMS ================= */
+input, select {
+    padding: 12px;
+    background: var(--glass);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    outline: none;
+    transition: var(--transition);
+}
+
+input:focus {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ================= HOTEL CARDS ================= */
+.rooms {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    color: white;
+    margin: 25px auto;
+    width: 90%;
+    max-width: 1100px;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--glass);
+    transition: var(--transition);
+}
+
+.rooms:hover {
+    transform: scale(1.02);
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.room-image img {
+    width: 150px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.hotel-info h3 {
+    color: var(--gold);
+    margin-bottom: 5px;
+}
+
+/* ================= FOOTER ================= */
+#footer {
+    background: #050505;
+    padding: 50px 20px;
+    margin-top: 60px;
+    text-align: center;
+    border-top: 1px solid var(--glass);
+}
+
+#footer h2 {
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+#footer a {
+    color: #ccc;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+#footer a:hover {
+    color: var(--gold);
+}
+
+/* ================= MODAL ================= */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    display: block;
+    margin: 5% auto;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 15px;
+    border: 2px solid var(--gold);
+    animation: zoomIn 0.4s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+}

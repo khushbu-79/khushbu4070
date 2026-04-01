@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Bon Voyage</title>
+
+<link rel="stylesheet" href="about.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+<style>
+/* ================= GLOBAL STYLES ================= */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0f2027;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav a:hover, .nav.active a {
+    color: gold;
+}
+
+/* ================= HERO SECTION ================= */
+.hero {
+    height: 60vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+                url('roomImages/room1.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    color: gold;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-top: 10px;
+}
+
+/* ================= ABOUT CONTENT ================= */
+.about-section {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.about-section h2 {
+    color: gold;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    transition: 0.3s;
+}
+
+.about-card:hover {
+    transform: translateY(-10px);
+    border-color: gold;
+}
+
+.about-card i {
+    font-size: 3rem;
+    color: gold;
+    margin-bottom: 20px;
+}
+
+/* ================= IMAGE GALLERY ================= */
+#about-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px 10%;
+}
+
+.aboutImg {
+    overflow: hidden;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.aboutImg img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: 0.5s;
+    display: block;
+}
+
+.aboutImg img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+/* ================= FOOTER ================= */
+#footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 60px 10%;
+    background: #050505;
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+#footer div { margin: 20px; min-width: 200px; }
+#footer h2 { color: gold; margin-bottom: 20px; }
+#footer p, #footer li { color: #ccc; line-height: 1.8; }
+#footer ul { list-style: none; padding: 0; }
+#footer a { color: #ccc; text-decoration: none; transition: 0.3s; }
+#footer a:hover { color: gold; }
+
+.social-links a { font-size: 1.5rem; margin-right: 15px; }
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<ul class="navbar" id="mainNav">
+    <li class="nav"><a href="hmpage.html"><i class="ri-home-line"></i> Home</a></li>
+    <li class="nav"><a href="bookingPage.html"><i class="ri-hotel-line"></i> Hotels</a></li>
+    <li class="nav"><a href="myBookings.html"><i class="ri-history-line"></i> My Bookings</a></li>
+    <li class="nav active"><a href="about.html"><i class="ri-information-line"></i> About</a></li>
+    <li class="nav" id="authLink"><a href="signin.html"><i class="ri-login-box-line"></i> Sign In</a></li>
+</ul>
+
+<section class="hero">
+    <div>
+        <h1>About Bon Voyage</h1>
+        <p>Crafting Unforgettable Journeys Since 2026</p>
+    </div>
+</section>
+
+<section class="about-section">
+    <h2>Our Core Philosophy</h2>
+    <p style="max-width: 800px; margin: 0 auto 50px auto; line-height: 1.8; color: #ccc;">
+        Bon Voyage is more than just a booking platform. We are a dedicated team of travel enthusiasts 
+        and tech innovators committed to making luxury travel accessible, transparent, and effortless.
+    </p>
+
+    <div class="about-grid">
+        <div class="about-card">
+            <i class="ri-global-line"></i>
+            <h3>Global Reach</h3>
+            <p>Access handpicked luxury properties across India's most iconic destinations.</p>
+        </div>
+        <div class="about-card">
+            <i class="ri-customer-service-2-line"></i>
+            <h3>Personalized Care</h3>
+            <p>We treat every booking as a unique journey, providing 24/7 support for our travelers.</p>
+        </div>
+        <div class="about-card">
+            <i class="ri-rocket-line"></i>
+            <h3>Tech-Driven</h3>
+            <p>Using modern MongoDB architecture to provide a fast and secure booking environment.</p>
+        </div>
+    </div>
+</section>
+
+<section id="about-images">
+    <div class="aboutImg"><img src="hotels/aboutImg1.jpg" alt="Travel Image 1"></div>
+    <div class="aboutImg"><img src="hotels/aboutImg2.webp" alt="Travel Image 2"></div>
+    <div class="aboutImg"><img src="hotels/aboutImg3.webp" alt="Travel Image 3"></div>
+    <div class="aboutImg"><img src="hotels/aboutImg4.jpg" alt="Travel Image 4"></div>
+</section>
+
+<section id="footer">
+    <div id="contact">
+        <h2>Bon Voyage</h2>
+        <p><b>Address:</b> Andheri, Mumbai</p>
+        <p><b>Phone:</b> +91-7087141423</p>
+        <p><b>Email:</b> support@bonvoyage.com</p>
+        <div class="social-links">
+            <a href="#"><i class="ri-instagram-line"></i></a>
+            <a href="#"><i class="ri-facebook-circle-fill"></i></a>
+            <a href="#"><i class="ri-twitter-line"></i></a>
+        </div>
+    </div>
+
+    <div>
+        <h2>Quick Links</h2>
+        <ul>
+            <li><a href="hmpage.html">Home</a></li>
+            <li><a href="bookingPage.html">Hotels</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <h2>Join Us</h2>
+        <ul>
+            <li><a href="signup.html">Create Account</a></li>
+            <li><a href="bookingPage.html">Plan a Trip</a></li>
+        </ul>
+    </div>
+</section>
+
+</div>
+
+<script>
+    // 1. Dynamic Auth Link (Login/Logout)
+    window.onload = function() {
+        const user = localStorage.getItem("username");
+        const authContainer = document.getElementById('authLink');
+
+        if (user) {
+            authContainer.innerHTML = `
+                <a href="#" onclick="logout()">
+                    <i class="ri-logout-box-line"></i> Logout (${user})
+                </a>`;
+        }
+    };
+
+    function logout() {
+        if(confirm("Ready to sign out?")) {
+            localStorage.removeItem("username");
+            location.reload();
+        }
+    }
+</script>
+
+</body>
+</html>

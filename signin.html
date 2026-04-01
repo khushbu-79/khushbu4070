@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign In - Bon Voyage</title>
+    <link rel="stylesheet" href="about.css">
+    <style>
+        .login-container { max-width: 400px; margin: 100px auto; padding: 20px; background: white; border-radius: 10px; color: black; text-align: center; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+        button { width: 100%; padding: 10px; background: gold; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body style="background: #0f2027; color: white; font-family: Poppins;">
+    <div class="login-container">
+        <h2 style="color: #2c5364;">Login</h2>
+        <input type="text" id="user" placeholder="Username">
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="login()">Sign In</button>
+        <p>New user? <a href="signup.html">Register here</a></p>
+    </div>
+
+    <script>
+        async function login() {
+            const user = document.getElementById("user").value;
+            const pass = document.getElementById("pass").value;
+
+            const res = await fetch("http://localhost:5000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username: user, password: pass })
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                localStorage.setItem("username", data.user);
+                alert("Welcome back, " + data.user);
+                window.location.href = "hmpage.html";
+            } else {
+                alert("Login Failed!");
+            }
+        }
+    </script>
+</body>
+</html>

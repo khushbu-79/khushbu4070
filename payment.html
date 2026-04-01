@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Payment | MongoDB Version</title>
+
+<link rel="stylesheet" href="about.css">
+
+<style>
+body{
+    background: linear-gradient(to right,#0f2027,#203a43,#2c5364);
+    color:white;
+    font-family:Poppins;
+}
+
+.navbar{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    padding:15px;
+    background: rgba(0,0,0,0.7);
+}
+
+.nav a{
+    color:white;
+    text-decoration:none;
+}
+
+.nav a:hover{
+    color:gold;
+}
+
+.container{
+    max-width:420px;
+    margin:60px auto;
+    background:white;
+    color:black;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
+
+.summary{
+    background:#f4f4f4;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    background:gold;
+    padding:12px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+} .input-container {
+    position: relative;
+    margin: 20px 0;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: none;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-container label {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: #999;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.input-container input:focus ~ label,
+.input-container input:valid ~ label {
+    top: -20px;
+    left: 5px;
+    font-size: 12px;
+    color: gold;
+}
+
+button:hover{
+    background:orange;
+}
+
+.msg{
+    text-align:center;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.loader{
+    display:none;
+    margin:10px auto;
+    border:4px solid #f3f3f3;
+    border-top:4px solid gold;
+    border-radius:50%;
+    width:30px;
+    height:30px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin{
+    0%{transform:rotate(0);}
+    100%{transform:rotate(360deg);}
+}
+</style>
+
+</head>
+
+<body>
+
+<ul class="navbar">
+<li class="nav"><a href="hmpage.html">Home</a></li>
+<li class="nav"><a href="bookingPage.html">Hotels</a></li>
+<li class="nav"><a href="myBookings.html">My Bookings</a></li>
+</ul>
+
+<div class="container">
+
+<h2>Secure Payment 💳</h2>
+
+<div class="summary">
+<p><b>Hotel:</b> <span id="hotel"></span></p>
+<p><b>Days:</b> <span id="days"></span></p>
+<p><b>Total:</b> ₹<span id="total"></span></p>
+</div>
+
+<input type="text" id="card" placeholder="Card Number (16 digits)">
+<input type="text" id="name" placeholder="Name on Card">
+<input type="text" id="expiry" placeholder="Expiry (MM/YY)">
+<input type="password" id="cvv" placeholder="CVV (3 digits)">
+
+<button onclick="pay()">Pay Now</button>
+
+<div class="loader" id="loader"></div>
+<p class="msg" id="msg"></p>
+
+</div>
+
+<script>
+// --- NEW: Load booking details from Local Storage ---
+window.onload = function() {
+    const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    if (bookings.length > 0) {
+        const latest = bookings[0]; // Get the most recent booking
+        document.getElementById("hotel").innerText = latest.hotel;
+        document.getElementById("days").innerText = latest.days;
+        document.getElementById("total").innerText = latest.total;
+    }
+};
+
+function pay(){
+    const card = document.getElementById("card").value;
+    const name = document.getElementById("name").value;
+
+    if(card.length < 16 || name === ""){
+        alert("Please enter valid card details");
+        return;
+    }
+
+    document.getElementById("loader").style.display = "block";
+
+    setTimeout(()=>{
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("msg").innerText = "Payment Successful 🎉";
+
+        setTimeout(()=>{
+            window.location.href = "myBookings.html";
+        },1500);
+    },1500);
+}
+</script>
+
+</body>
+</html>
